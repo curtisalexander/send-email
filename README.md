@@ -86,7 +86,7 @@ fi
 ## Requirements
 
 ### Network Permissions
-First, the machine you are sending from must be able to send email messages to through the `email_server`.
+First, the machine you are sending from must be able to send email messages through the `email_server`.
 
 ### Python
 The script utilizes Python 3.  In addition, it makes use of the `pyyaml` library for parsing the [email.yaml](#email.yaml) file.
