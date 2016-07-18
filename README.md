@@ -68,7 +68,7 @@ Double braces, `{{`, are required for escaping as the HTML message is stored wit
 
 <!-- HTML style -->
 <style>
-  mark {
+  #mark {
     background-color: lightgray;
     color: black;
   }
