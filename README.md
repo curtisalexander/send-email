@@ -35,7 +35,6 @@ recipient:
 subject: Failure
 msg_text: >
     There was an error in the script.<br><br>Please check the script and try again.
-email_server: inbound.elevate.com
 ```
 
 ## Wrapper
