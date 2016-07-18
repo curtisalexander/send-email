@@ -66,15 +66,7 @@ Double braces, `{{`, are required for escaping as the HTML message is stored wit
 </style>
 ```
 
-<!-- HTML style -->
-<style>
-  .mark {
-    background-color: lightgray;
-    color: black;
-  }
-</style>
-
-The \<mark\> tag allows me to perform some <mark>light highlighting</mark> of text.
+For example, the \<mark\> tag allows me to perform some light highlighting of text.
 
 ## Limitations
 The core Python script may work on Windows machines as well - I simply have not tested.  However, the wrapper script is a `bash` script and would need to be ported to a Windows equivalent.
