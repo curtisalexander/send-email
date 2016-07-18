@@ -1,6 +1,5 @@
 # send-email
 
-## Purpose
 When automating a long-running script, it is often helpful to send an email if that script fails in some way.  Outlined below is how I send error emails for `bash`, `Rscript`, or `Python` scripts on [Unix-like](https://en.wikipedia.org/wiki/Unix-like) operating systems.
 
 ## `email.yaml`
