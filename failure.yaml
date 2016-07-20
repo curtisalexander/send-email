@@ -1,0 +1,10 @@
+email_server: outbound.somedomain.com
+sender:
+    email_address: noreply@somedomain.com
+    pretty_name: No Reply
+recipient:
+    email_address: firstname_lastname@anotherdomain.com
+    pretty_name: Firstname Lastname
+subject: Failure
+msg_text: >
+    Terrible news!<br><br>The script did not complete successfully.  Please check the script and try again.
