@@ -6,8 +6,23 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formataddr
+import click
 import smtplib
 import yaml
+
+@click.command()
+@click.option('--config', required=True, type=click.Path(), help='file path to yaml configuration file')
+
+def main(config):
+    with open(config, 'r') as f:
+        email_yaml = yaml.load(f)
+
+    send_email(email_yaml['sender'],
+               email_yaml['recipient'],
+               email_yaml['subject'],
+               email_yaml['msg_text'],
+               email_yaml['email_server'])
+
 
 def create_email(sender,
                  recipient_addresses,
@@ -99,12 +114,4 @@ def send_email(sender,
         s.quit()
 
 if __name__ == '__main__':
-    # assumes yaml file is named email.yaml
-    with open('email.yaml', 'r') as f:
-        email_yaml = yaml.load(f)
-
-    send_email(email_yaml['sender'],
-               email_yaml['recipient'],
-               email_yaml['subject'],
-               email_yaml['msg_text'],
-               email_yaml['email_server'])
+    main()
