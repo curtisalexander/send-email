@@ -1,9 +1,25 @@
 # send-email
 
-When automating a long-running script, it is often helpful to send an email if that script fails in some way.  Outlined below is how I send error emails for `bash`, `Rscript`, or `Python` scripts on [Unix-like](https://en.wikipedia.org/wiki/Unix-like) operating systems.
+When automating a long-running script, it is often helpful to send an email when that script completes - whether it fails or succeeds.  `send-email.py` is just a simple Python script that allows me to send email after a `bash`, `Rscript`, or `Python` script on [Unix-like](https://en.wikipedia.org/wiki/Unix-like) OS completes.
 
-## `email.yaml`
-A sample of an `email.yaml` file is below.  The fields within should be self explanatory.  HTML tags may be added to the `msg_text` in order to better format the email.
+## Options
+Auto-generated thanks to [click](http://click.pocoo.org).
+
+```
+Usage: send-email.py [OPTIONS]
+
+Options:
+  --config PATH  file path to yaml configuration file  [required]
+    --help         Show this message and exit.
+```
+
+## Configuration File
+The relevant information related to an email, including the email message, is written in a `yaml` file.  When running a script, I prefer to create two `yaml` files - `success.yaml` and `failure.yaml`.  I then use a [wrapper](#wrapper) in order to check the return status code of the script and decide whether I should send a success or failure email.
+
+### `failure.yaml`
+Below is an example of a `failure.yaml` file.  A `success.yaml` file is structured the exact same.  The fields within the `yaml` file should be self explanatory.  HTML tags may be added to the `msg_text` in order to better format the email.
+
+#### Single Recipient
 
 ```yaml
 email_server: outbound.somedomain.com
@@ -15,10 +31,11 @@ recipient:
     pretty_name: Firstname Lastname
 subject: Failure
 msg_text: >
-    There was an error in the script.<br><br>Please check the script and try again.
+    Terrible news!<br><br>The script did not complete successfully.  Please check the     script and try again.
 ```
 
-In order to send to multiple recipients, create a list under `email_address` and `pretty_name`.  It is **assumed** that values in the same position should be matched. For instance, the second `email_address` (firstname_lastname2@anotherdomain.com) corresponds to the second `pretty_name` (Firstname Lastname 2).  Below is an example.
+#### Multiple Recipients
+In order to send to multiple recipients, create a list under `email_address` and `pretty_name`.  It is **assumed** that values in the same position should be matched. For instance, the second `email_address` (firstname_lastname2@anotherdomain.com) corresponds to the second `pretty_name` (Firstname Lastname 2).  Within the Python code, they are [zipped](https://docs.python.org/3/library/functions.html#zip). 
 
 ```yaml
 email_server: outbound.somedomain.com
@@ -34,18 +51,26 @@ recipient:
         - Firstname Lastname 2
 subject: Failure
 msg_text: >
-    There was an error in the script.<br><br>Please check the script and try again.
+    Terrible news!<br><br>The script did not complete successfully.  Please check the     script and try again.
 ```
 
 ## Wrapper
-Using a wrapper in conjunction with cron allows for simple automation with error messaging.
+Using a wrapper in conjunction with cron allows for simple automation followed by sending an email upon either success or failure. 
 
 ```bash
 #!/usr/bin/env bash
 
 /path/to/script [parameters]
+
+# http://tldp.org/LDP/abs/html/exit-status.html
+# $? ==> reads the exit status of the last command executed
+# $? -eq 0 is success
+# $? -ne 0 is failure
+
 if [ $? -ne 0 ]; then
-    send-email.py
+    send-email.py --config failure.yaml
+else
+    send-email.py --config success.yaml
 fi
 ```
 
@@ -71,25 +96,15 @@ For example, the \<mark\> tag allows me to perform some light highlighting of te
 ## Limitations
 The core Python script may work on Windows machines as well - I simply have not tested.  However, the wrapper script is a `bash` script and would need to be ported to a Windows equivalent.
 
-## Error vs. Success 
-The focus here has been on scripts that error.  But the same can be accomplished for scripts that complete successfully.  In that case, the wrapper would need to be adjusted to check for a success error code.
-
-```bash
-#!/usr/bin/env bash
-
-/path/to/script [parameters]
-if [ $? -eq 0 ]; then
-    send-email.py
-fi
-```
-
 ## Requirements
 
 ### Network Permissions
 First, the machine you are sending from must be able to send email messages through the `email_server`.
 
 ### Python
-The script utilizes Python 3.  In addition, it makes use of the `pyyaml` library for parsing the [email.yaml](#email.yaml) file.
+The script utilizes Python 3.  In addition, it makes use of the `pyyaml` library for parsing the [email.yaml](#email.yaml) file and the `click` library for turning into a command line script.
+
+#### `pyyaml`
 
 ```python
 # conda
@@ -97,4 +112,14 @@ conda install pyyamml
 
 # pip
 pip install pyyaml
+```
+
+#### `click`
+
+```python
+# conda
+conda install click
+
+# pip
+pip install click
 ```
