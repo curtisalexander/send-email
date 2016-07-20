@@ -5,6 +5,6 @@ sender:
 recipient:
     email_address: firstname_lastname@anotherdomain.com
     pretty_name: Firstname Lastname
-subject: Failure
+subject: Success
 msg_text: >
     Great news!<br><br>The script completed successfully.
