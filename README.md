@@ -31,7 +31,7 @@ recipient:
     pretty_name: Firstname Lastname
 subject: Failure
 msg_text: >
-    Terrible news!<br><br>The script did not complete successfully.  Please check the     script and try again.
+    Terrible news!<br><br>The script did not complete successfully.  Please check the script and try again.
 ```
 
 #### Multiple Recipients
@@ -51,7 +51,7 @@ recipient:
         - Firstname Lastname 2
 subject: Failure
 msg_text: >
-    Terrible news!<br><br>The script did not complete successfully.  Please check the     script and try again.
+    Terrible news!<br><br>The script did not complete successfully.  Please check the script and try again.
 ```
 
 ## Wrapper
