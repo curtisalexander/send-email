@@ -35,7 +35,7 @@ msg_text: >
 ```
 
 #### Multiple Recipients
-In order to send to multiple recipients, create a list under `email_address` and `pretty_name`.  It is **assumed** that values in the same position should be matched. For instance, the second `email_address` (firstname_lastname2@anotherdomain.com) corresponds to the second `pretty_name` (Firstname Lastname 2).  Within the Python code, they are [zipped](https://docs.python.org/3/library/functions.html#zip). 
+In order to send to multiple recipients, create a list under `email_address` and `pretty_name`.  It is **assumed** that values in the same position should be matched. For instance, the second `email_address` (firstname_lastname2@anotherdomain.com) corresponds to the second `pretty_name` (Firstname Lastname 2).  [Within](send-email.py#L71) the Python code, they are [zipped](https://docs.python.org/3/library/functions.html#zip). 
 
 ```yaml
 email_server: outbound.somedomain.com
