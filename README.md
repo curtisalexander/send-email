@@ -94,7 +94,14 @@ Double braces, `{{`, are required for escaping as the HTML message is stored wit
 For example, the \<mark\> tag allows me to perform some light highlighting of text.
 
 ## Limitations
+
+### Windows
 The core Python script may work on Windows machines as well - I simply have not tested.  However, the wrapper script is a `bash` script and would need to be ported to a Windows equivalent.
+
+### `cron`
+If the wrapper is scheduled via `cron`, there may be issues running `send-email.py` simply as a command line script (i.e. relying on the `#!/usr/bin/env python` statement at the top of the program).  You may need to explicitly have Python execute the script.
+
+In actuality, this probably means I need to troubleshoot environments and environment variables when scheduling with `cron`.  I haven't had the chance to do so as of yet.
 
 ## Requirements
 
