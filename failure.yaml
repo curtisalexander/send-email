@@ -5,6 +5,7 @@ sender:
 recipient:
     email_address: firstname_lastname@anotherdomain.com
     pretty_name: Firstname Lastname
-subject: Failure
+subject: >
+    Failure
 msg_text: >
     Terrible news!<br><br>The script did not complete successfully.  Please check the script and try again.
