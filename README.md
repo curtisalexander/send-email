@@ -101,7 +101,7 @@ The core Python script may work on Windows machines as well - I simply have not 
 ### `cron`
 If the wrapper is scheduled via `cron`, there may be issues running `send-email.py` simply as a command line script (i.e. relying on the `#!/usr/bin/env python` statement at the top of the program).  You may need to explicitly have Python execute the script.
 
-In actuality, this probably means I need to troubleshoot environments and environment variables when scheduling with `cron`.  I haven't had the chance to do so as of yet.
+In actuality, this probably means I need to troubleshoot environments and environment variables when scheduling with `cron`.
 
 ## Requirements
 
@@ -109,7 +109,7 @@ In actuality, this probably means I need to troubleshoot environments and enviro
 First, the machine you are sending from must be able to send email messages through the `email_server`.
 
 ### Python
-The script utilizes Python 3.  In addition, it makes use of the `pyyaml` library for parsing the [email.yaml](#email.yaml) file and the `click` library for turning into a command line script.
+The script utilizes Python 3.  In addition, it makes use of the `pyyaml` library for parsing the [yaml](#failure.yaml) file and the `click` library for turning into a command line script.
 
 #### `pyyaml`
 
