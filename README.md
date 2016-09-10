@@ -109,7 +109,7 @@ In actuality, this probably means I need to troubleshoot environments and enviro
 First, the machine you are sending from must be able to send email messages through the `email_server`.
 
 ### Python
-The script utilizes Python 3.  In addition, it makes use of the `pyyaml` library for parsing the [yaml](#failure.yaml) file and the `click` library for turning into a command line script.
+The script utilizes Python 3.  In addition, it makes use of the `pyyaml` library for parsing the [yaml](#failureyaml) file and the `click` library for turning into a command line script.
 
 #### `pyyaml`
 
