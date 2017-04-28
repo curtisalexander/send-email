@@ -91,7 +91,7 @@ Double braces, `{{`, are required for escaping as the HTML message is stored wit
 </style>
 ```
 
-For example, the \<mark\> tag allows me to perform some light highlighting of text.
+For example, the `<mark>` tag allows me to perform some light highlighting of text.
 
 ## Limitations
 
