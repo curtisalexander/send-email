@@ -10,7 +10,7 @@ Usage: send-email.py [OPTIONS]
 
 Options:
   --config PATH  file path to yaml configuration file  [required]
-    --help         Show this message and exit.
+  --help         Show this message and exit.
 ```
 
 ## Configuration File
